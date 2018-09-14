@@ -19,15 +19,18 @@ const swap = (a, i, j) => {
  * @param n
  * @param cb
  * @returns void
- * @example heaps([1,2,3,4], 4, p => result.push(p.slice()));
+ * @example 
+ *   const result = []; 
+ *   heaps([1,2,3,4], 4, p => result.push(p.slice()));
+ *   result // array (24)
  */
 const heaps = (arr, n = arr.length, cb = i => i) => {
   if (n === 1) {
     cb(arr);
   } else {
     for (let i = 0; i < n; i++) {
-      perm(arr, n - 1, cb);
-      heaps(arr, n - 1, n % 2 ? 0 : i);
+      heaps(arr, n - 1, cb);
+      swap(arr, n - 1, n % 2 ? 0 : i);
     }
   }
 };
